@@ -1,3 +1,5 @@
 nltk==3.7
 pandas==1.4.1
 scikit_learn==1.0.2
+bert-tensorflow==1.0.4
+tensorflow-gpu>=1.11.0 
