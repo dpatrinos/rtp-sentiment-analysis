@@ -249,7 +249,17 @@ class XnliProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["contradiction", "entailment", "neutral"]
+    import pandas as pd
+    with open("./data/train.tsv", "r") as f:
+      df1 = pd.read_csv(f, delimiter="\t", header=None)
+      df1 = df.drop(combined.columns[[0, 2, 3]], axis=1)
+      list1 = df1.values.tolist()
+    with open("./data/dev.tsv", "r") as f:
+      df2 = pd.read_csv(f, delimiter="\t", header=None)
+      df2 = df.drop(combined.columns[[0, 2, 3]], axis=1)
+      list2 = df2.values.tolist()
+    list3 = list1+list2
+    return list3
 
 
 class MnliProcessor(DataProcessor):
@@ -273,7 +283,17 @@ class MnliProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["contradiction", "entailment", "neutral"]
+    import pandas as pd
+    with open("./data/train.tsv", "r") as f:
+      df1 = pd.read_csv(f, delimiter="\t", header=None)
+      df1 = df.drop(combined.columns[[0, 2, 3]], axis=1)
+      list1 = df1.values.tolist()
+    with open("./data/dev.tsv", "r") as f:
+      df2 = pd.read_csv(f, delimiter="\t", header=None)
+      df2 = df.drop(combined.columns[[0, 2, 3]], axis=1)
+      list2 = df2.values.tolist()
+    list3 = list1 + list2
+    return list3
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
