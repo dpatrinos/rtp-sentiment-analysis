@@ -353,26 +353,33 @@ class ColaProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    import pandas as pd
-    with open("./data/train.tsv", "r") as f:
-        df1 = pd.read_csv(f, delimiter="\t", header=None)
-    df1 = df1.drop(df1.columns[[0, 2, 3]], axis=1)
-    list1 = df1.values.tolist()
+    import numpy as np
+    
+    list = np.arange(0,1,0.000001)
     strlist = []
-    for value in list1:
-        value = str(value)
-        value = value.replace("[","").replace("]","")
-        if value not in strlist:
-            strlist.append(value)
-    with open("./data/dev.tsv", "r") as f:
-        df2 = pd.read_csv(f, delimiter="\t", header=None)
-    df2 = df2.drop(df2.columns[[0, 2, 3]], axis=1)
-    list2 = df2.values.tolist()
-    for value in list2:
-        value = str(value)
-        value = value.replace("[","").replace("]","")
-        if value not in strlist:
-            strlist.append(value)
+    for value in list:
+        strlist.append('%.6f' % (value))
+
+    list = np.arange(0,1,0.00001)
+    for value in list:
+        strlist.append('%.5f' % (value))
+
+    list = np.arange(0,1,0.0001)
+    for value in list:
+        strlist.append('%.4f' % (value))
+
+    list = np.arange(0,1,0.001)
+    for value in list:
+        strlist.append('%.3f' % (value))
+
+    list = np.arange(0,1,0.01)
+    for value in list:
+        strlist.append('%.2f' % (value))
+
+    list = np.arange(0,1,0.1)
+    for value in list:
+        strlist.append('%.1f' % (value))
+
     return strlist
 
   def _create_examples(self, lines, set_type):
