@@ -249,17 +249,7 @@ class XnliProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    import pandas as pd
-    with open("./data/train.tsv", "r") as f:
-      df1 = pd.read_csv(f, delimiter="\t", header=None)
-      df1 = df.drop(combined.columns[[0, 2, 3]], axis=1)
-      list1 = df1.values.tolist()
-    with open("./data/dev.tsv", "r") as f:
-      df2 = pd.read_csv(f, delimiter="\t", header=None)
-      df2 = df.drop(combined.columns[[0, 2, 3]], axis=1)
-      list2 = df2.values.tolist()
-    list3 = list1+list2
-    return list3
+    return ["contradiction", "entailment", "neutral"]
 
 
 class MnliProcessor(DataProcessor):
@@ -283,17 +273,7 @@ class MnliProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    import pandas as pd
-    with open("./data/train.tsv", "r") as f:
-      df1 = pd.read_csv(f, delimiter="\t", header=None)
-      df1 = df.drop(combined.columns[[0, 2, 3]], axis=1)
-      list1 = df1.values.tolist()
-    with open("./data/dev.tsv", "r") as f:
-      df2 = pd.read_csv(f, delimiter="\t", header=None)
-      df2 = df.drop(combined.columns[[0, 2, 3]], axis=1)
-      list2 = df2.values.tolist()
-    list3 = list1 + list2
-    return list3
+    return ["contradiction", "entailment", "neutral"]
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
@@ -373,7 +353,27 @@ class ColaProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["0", "1"]
+    import pandas as pd
+    with open("./data/train.tsv", "r") as f:
+        df1 = pd.read_csv(f, delimiter="\t", header=None)
+    df1 = df1.drop(df1.columns[[0, 2, 3]], axis=1)
+    list1 = df1.values.tolist()
+    strlist = []
+    for value in list1:
+        value = str(value)
+        value = value.replace("[","").replace("]","")
+        if value not in strlist:
+            strlist.append(value)
+    with open("./data/dev.tsv", "r") as f:
+        df2 = pd.read_csv(f, delimiter="\t", header=None)
+    df2 = df2.drop(df2.columns[[0, 2, 3]], axis=1)
+    list2 = df2.values.tolist()
+    for value in list2:
+        value = str(value)
+        value = value.replace("[","").replace("]","")
+        if value not in strlist:
+            strlist.append(value)
+    return strlist
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
