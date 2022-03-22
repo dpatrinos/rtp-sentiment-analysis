@@ -360,28 +360,10 @@ class ColaProcessor(DataProcessor):
     list = np.arange(0,1,0.000001)
     strlist = []
     for value in list:
-        strlist.append('%.6f' % (value))
-
-    list = np.arange(0,1,0.00001)
-    for value in list:
-        strlist.append('%.5f' % (value))
-
-    list = np.arange(0,1,0.0001)
-    for value in list:
-        strlist.append('%.4f' % (value))
-
-    list = np.arange(0,1,0.001)
-    for value in list:
-        strlist.append('%.3f' % (value))
-
-    list = np.arange(0,1,0.01)
-    for value in list:
-        strlist.append('%.2f' % (value))
-
-    list = np.arange(0,1,0.1)
-    for value in list:
-        strlist.append('%.1f' % (value))
-
+      value = '%.6f' % (value)
+      value = value.rstrip('0')
+      strlist.append(value)
+    strlist.append('1.0')
     return strlist
 
   def _create_examples(self, lines, set_type):

@@ -1,5 +1,6 @@
 bert/cased_L-12_H-768_A-12
 bert/bert_output
+bert/__pycache__
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
