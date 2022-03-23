@@ -1,6 +1,9 @@
 bert/cased_L-12_H-768_A-12
 bert/bert_output
 bert/__pycache__
+bert/aclImdb
+bert/aclImdb_v1.tar.gz
+bert/imdb_bert
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
