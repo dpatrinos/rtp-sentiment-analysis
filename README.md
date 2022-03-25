@@ -6,7 +6,7 @@ A political sentiment analysis of the 1990s volumes of Washington and Lee Univer
 
 ## Overview
 
-This project uses Bidirectional Encoder Representations from Transformers (BERT) deep learning model. Using the Stanford IMDB dataset, "BERT-Base, cased" is fine-tuned for sentiment analysis.
+This project uses Bidirectional Encoder Representations from Transformers (BERT) deep learning model. Using the Stanford IMDb dataset, "BERT-Base, cased" is fine-tuned for sentiment analysis.
 
 Following this, the model classifies sentences from the Ring-tum Phi. These sentences are chosen by keywords, which allows for political sentiment to then be quantified. If BERT classifies a sentence containing "Democrat" as being negative, a conservative sentiment can be concluded.
 ## Acknowledgements
